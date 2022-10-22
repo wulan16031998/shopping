@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext, createContext } from "react";
 import propTypes from 'prop-types'
+import { Total } from "./Total";
 
 
 Counter.propTypes = {
@@ -10,47 +11,50 @@ export function Counter(props) {
   const priceItem= props.priceItem
   const [count,setCount] = useState(0);
   const [price,setPrice]=useState("");
-  console.log({price});
+  console.log(price);
   
-
-
- useEffect(()=> {
-  console.log({count})
-  setPrice(()=>priceItem * count);
- },[count]);
-
  const handleClickPlus = () => {
   setCount((prevCount) =>  prevCount + 1);
 };
-//  const handleClickMin = () => {
-//   setCount((prevCount)=> {
-//     if(prevCount > 0) {
-//       prevCount-1
-//     } else {
-//       return;
-//     }
-//   }}
+
+
+ const handleChangePrice = () => {
+  setPrice(()=>priceItem*count)
+ }
+
+ const handleClickMin = () => {
+  count > 0 &&
+  setCount((prevCount)=> prevCount-1);
+ }
+
+ useEffect(()=> {
+  document.addEventListener('click',handleChangePrice);
+ })
 
   return (
+    <>
+    
     <div className=" flex-row  w-[20%] m-4  ">
-        <div className="flex-col  h-[90%]">
-          <div className="flex justify-end items-start">
-            <button  className="p-3 flex" onClick={((prevCount) => prevCount-1)}>-</button>
-            <div className="p-3  border-black">
-              {count}
-            </div>
-            <button   className="p-3 flex  border-black" onClick={handleClickPlus}>+</button>
-          </div> 
-          <div className="flex justify-end items-start text-[10px]">(Note: {count}piece)</div> 
-        
+    <div className="flex-col  h-[90%]">
+      <div className="flex justify-end items-start">
+        <button  className="p-3 flex" onClick={handleClickMin} >-</button>
+        <div className="p-3  border-black">
+          {count}
         </div>
-
-
-    <p className="flex-col text-right ">${price}</p>
-   
-   
+        <button   className="p-3 flex  border-black" onClick={handleClickPlus}>+</button>
+      </div> 
+      <div className="flex justify-end items-start text-[10px]">(Note: {count}piece)</div> 
+    
     </div>
-   
+
+
+<p className="flex-col text-right ">${price}</p>
+
+
+</div>
+
+  
+    </>
   )
 }
 

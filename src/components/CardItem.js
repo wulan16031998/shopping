@@ -13,7 +13,7 @@ CardItem.propTypes ={
 export function CardItem(props) {
   return (
 
-    <div className='flex bg-slate-500/5 shadow-md mb-5 text-sm'>
+    <div className='flex bg-slate-500/5 shadow-md mb-5 text-sm '>
 
       <img src='https://picsum.photos/180/200' className='flex m-4 w-[25%] ' alt=""/>
       
