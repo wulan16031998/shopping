@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, createContext } from "react";
+import React, { useEffect, useState } from "react";
 import propTypes from 'prop-types'
 import { Total } from "./Total";
 
@@ -7,11 +7,15 @@ Counter.propTypes = {
   priceItem:propTypes.number.isRequired
 }
 
+
+
 export function Counter(props) {
   const priceItem= props.priceItem
   const [count,setCount] = useState(0);
   const [price,setPrice]=useState("");
+  const [temporaryAmount, setTemporaryAmount]=useState([]);
   console.log(price);
+  
   
  const handleClickPlus = () => {
   setCount((prevCount) =>  prevCount + 1);
@@ -27,8 +31,14 @@ export function Counter(props) {
   setCount((prevCount)=> prevCount-1);
  }
 
+ const handleChangeTemporary = () => {
+  
+  
+ }
+
  useEffect(()=> {
   document.addEventListener('click',handleChangePrice);
+
  })
 
   return (
@@ -41,7 +51,7 @@ export function Counter(props) {
         <div className="p-3  border-black">
           {count}
         </div>
-        <button   className="p-3 flex  border-black" onClick={handleClickPlus}>+</button>
+        <button   className="p-3 flex  border-black" onClick={handleClickPlus} onChange={handleChangeTemporary}>+</button>
       </div> 
       <div className="flex justify-end items-start text-[10px]">(Note: {count}piece)</div> 
     

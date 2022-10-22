@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from 'prop-types';
 import {MdDeleteForever} from 'react-icons/md'
 import {GiSelfLove} from 'react-icons/gi'
@@ -10,9 +10,23 @@ CardItem.propTypes ={
   size:PropTypes.string.isRequired
 }
 
-export function CardItem(props) {
-  return (
+const labelProduk = [
+  {
+    name:"Blue Denim Shirt",
+    price:"80000"
+  }
+]
 
+
+export function CardItem(props) {
+  const [removeItem,setRemoveItem] = useState(false)
+
+  const handleClickRemove = () => {
+    setRemoveItem(true);
+  }
+
+  return (
+    !removeItem &&
     <div className='flex bg-slate-500/5 shadow-md mb-5 text-sm '>
 
       <img src='https://picsum.photos/180/200' className='flex m-4 w-[25%] ' alt=""/>
@@ -31,7 +45,7 @@ export function CardItem(props) {
           <div className="w-1/2 flex ">
 
           <MdDeleteForever/>{" "}
-            <button className="flex">Remove Item</button>
+            <button className="flex" onClick={handleClickRemove}>Remove Item</button>
           </div>
           <div className="w-1/2 flex">
             <GiSelfLove className=""/>{" "}
@@ -43,5 +57,6 @@ export function CardItem(props) {
     <Counter priceItem={30000}/>
     
   </div>
+    
   )
 }
