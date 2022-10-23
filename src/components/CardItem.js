@@ -55,6 +55,8 @@ export function CardItem(props) {
     </div>
 
     <Counter priceItem={30000}/>
+
+   
     
   </div>
     

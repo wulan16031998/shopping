@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 
 export function Total(props) {
-  const [temporaryAmount,setTemporaryAmount]=useState(0);
+  const [temporaryAmount,setTemporaryAmount]=useState([]);
   const [total,setTotal]=useState(0);
   
   const price = props.price;
 
   const handleChangeTemporary= () => {
-    setTemporaryAmount(()=> price )
+    setTemporaryAmount((prevAmount)=> [price, ...prevAmount] )
+    
     console.log({temporaryAmount});
   }
 
@@ -29,7 +30,8 @@ export function Total(props) {
 
         <div className="flex  ">
           <p className="flex-col text-left w-1/2 ">Temporary amount </p>
-          <p className="flex-col w-1/2 text-right">${price}</p>
+          
+          <p className="flex-col w-1/2 text-right">${temporaryAmount}</p>
         </div>
 
         <div className="flex">
